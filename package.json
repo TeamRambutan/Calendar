@@ -6,12 +6,15 @@
     "test": "meteor test --once --driver-package meteortesting:mocha"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0-beta.51",
+    "@babel/runtime": "^7.0.0-beta.53",
     "meteor-node-stubs": "^0.4.1"
   },
   "devDependencies": {
+    "autoprefixer": "^6.3.1",
     "chai": "^4.1.2",
-    "autoprefixer": "^6.3.1"
+    "postcss": "^6.0.22",
+    "postcss-load-config": "^1.2.0",
+    "postcss-plugin": "^1.0.0"
   },
   "postcss": {
     "plugins": {
