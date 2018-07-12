@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7beb91a-b46a-4f8d-98d6-daaa303b2094" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/imports/ui/components/calendar/calendar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imports/ui/components/calendar/calendar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/lib/semantic-ui/custom.semantic.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/ui/pages/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/imports/ui/pages/home/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/ui/pages/home/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/imports/ui/pages/home/home.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,15 +41,6 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="hello.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/imports/ui/components/hello/hello.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" lean-forward="true" selection-end-line="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/pages/home/home.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -71,29 +59,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calendar.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="calendar.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/components/calendar/calendar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
+            <state relative-caret-position="389">
               <caret line="40" column="10" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calendar.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/imports/ui/components/calendar/calendar.js">
+      <file leaf-file-name="custom.semantic.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/lib/semantic-ui/custom.semantic.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+            <state relative-caret-position="134">
+              <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".custom.semantic.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/lib/semantic-ui/.custom.semantic.json">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="hello.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/components/hello/hello.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="4" lean-forward="true" selection-end-line="4" />
+              <caret line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -126,8 +119,9 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/imports/ui/components/calendar/calendar.js" />
         <option value="$PROJECT_DIR$/imports/ui/pages/home/home.js" />
-        <option value="$PROJECT_DIR$/imports/ui/components/calendar/calendar.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/home/home.html" />
+        <option value="$PROJECT_DIR$/imports/ui/components/calendar/calendar.html" />
+        <option value="$PROJECT_DIR$/client/lib/semantic-ui/custom.semantic.json" />
       </list>
     </option>
   </component>
@@ -1027,7 +1021,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1346" />
@@ -1047,6 +1041,24 @@
             <path>
               <item name="Calendar" type="b2602c69:ProjectViewProjectNode" />
               <item name="Calendar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Calendar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Calendar" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Calendar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Calendar" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Calendar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Calendar" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="semantic-ui" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Calendar" type="b2602c69:ProjectViewProjectNode" />
@@ -1247,12 +1259,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1531310521813</updated>
-      <workItem from="1531310529351" duration="8502000" />
+      <workItem from="1531310529351" duration="9505000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8502000" />
+    <option name="totallyTimeSpent" value="9505000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="20" width="1346" height="688" extended-state="0" />
@@ -1366,7 +1378,7 @@
     <entry file="file://$PROJECT_DIR$/imports/ui/components/hello/hello.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
-          <caret line="19" lean-forward="true" selection-end-line="19" />
+          <caret line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
@@ -1399,7 +1411,7 @@
     <entry file="file://$PROJECT_DIR$/imports/ui/components/hello/hello.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" lean-forward="true" selection-end-line="4" />
+          <caret line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
@@ -1419,8 +1431,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/components/calendar/calendar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
+        <state relative-caret-position="389">
           <caret line="40" column="10" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/lib/semantic-ui/.custom.semantic.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/lib/semantic-ui/custom.semantic.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
         </state>
       </provider>
     </entry>
