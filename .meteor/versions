@@ -41,7 +41,7 @@ less@2.7.12
 livedata@1.0.18
 lmieulet:meteor-coverage@1.1.4
 logging@1.1.20
-meteor@1.9.0
+meteor@1.9.2
 meteor-base@1.4.0
 meteorhacks:picker@1.0.3
 meteortesting:browser-tests@1.0.0
@@ -51,9 +51,10 @@ minifier-js@2.3.5
 minimongo@1.4.4
 mobile-experience@1.0.5
 mobile-status-bar@1.0.14
-modern-browsers@0.1.1
-modules@0.12.1
+modern-browsers@0.1.2
+modules@0.12.2
 modules-runtime@0.10.2
+momentjs:moment@2.8.4
 mongo@1.5.1
 mongo-dev-server@1.1.0
 mongo-id@1.0.7
@@ -68,6 +69,7 @@ reactive-var@1.0.11
 reload@1.2.0
 retry@1.1.0
 routepolicy@1.0.13
+rzymek:fullcalendar@3.8.0
 semantic:ui@2.3.1
 semantic:ui-data@2.3.1
 shell-server@0.3.1
