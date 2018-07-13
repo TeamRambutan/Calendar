@@ -25,3 +25,4 @@ johanbrook:publication-collector  # Test a Meteor publication by collecting its 
 semantic:ui
 juliancwirko:postcss
 rzymek:fullcalendar
+momentjs:moment

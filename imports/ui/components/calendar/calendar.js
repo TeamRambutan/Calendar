@@ -1,4 +1,6 @@
 import './calendar.html';
+import $ from 'jquery';
+import 'fullcalendar';
 
 Template.calendar.onCreated(function calendarOnCreated() {
     // counter starts at 0
@@ -6,7 +8,7 @@ Template.calendar.onCreated(function calendarOnCreated() {
 });
 
 Template.calendar.onRendered(function() {
-    /*$(document).ready(function() {
+    $(document).ready(function() {
             console.log($('#calendar'));
         $('#calendar').fullCalendar({
             header: {
@@ -76,7 +78,7 @@ Template.calendar.onRendered(function() {
             ]
         });
 
-    });*/
+    });
 });
 
 Template.calendar.helpers({
