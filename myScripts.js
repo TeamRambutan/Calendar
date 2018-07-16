@@ -20,7 +20,7 @@ function createVevent() {
   let event = `DTSTAMP:${dtStamp}\r\n`;
   event = event.concat(`UID:${dtStamp}-${document.getElementById('start-time').value.substring(3, 5)}@example.com\r\n`);
   console.log(event);
-  event = event.concat(`TZID:${createTZid()}\r\n`);
+  event = event.concat(`TZID:${createTZid(date)}\r\n`);
   event = event.concat(`LOCATION:${document.getElementById('location').value}\r\n`);
   event = event.concat(`SUMMARY:${document.getElementById('summary').value}\r\n`);
   event = event.concat(`DTSTART:${createDT(document.getElementById('dateStart').value, document.getElementById('start-time').value)}\r\n`);
@@ -54,8 +54,7 @@ function createDT (date, time) {
   console.log(dt);
   return dt;
 }
-function createTZid (){ //creates tzid using gettimezoneoffset which is utc minus user's current time
-  let time= new Date();
+function createTZid (time){ //creates tzid using gettimezoneoffset which is utc minus user's current time
   let tzos= time.getTimezoneOffset();
   switch (tzos){
     case 720:
