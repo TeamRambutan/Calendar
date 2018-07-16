@@ -20,6 +20,7 @@ function createVevent() {
   let event = `DTSTAMP:${dtStamp}\r\n`;
   event = event.concat(`UID:${dtStamp}-${document.getElementById('start-time').value.substring(3, 5)}@example.com\r\n`);
   console.log(event);
+  event = event.concat(`TZID:${createTZid()}\r\n`);
   event = event.concat(`LOCATION:${document.getElementById('location').value}\r\n`);
   event = event.concat(`SUMMARY:${document.getElementById('summary').value}\r\n`);
   event = event.concat(`DTSTART:${createDT(document.getElementById('dateStart').value, document.getElementById('start-time').value)}\r\n`);
@@ -53,3 +54,129 @@ function createDT (date, time) {
   console.log(dt);
   return dt;
 }
+function createTZid (){ //creates tzid using gettimezoneoffset which is utc minus user's current time
+  let time= new Date();
+  let tzos= time.getTimezoneOffset();
+  switch (tzos){
+    case 720:
+      timezone = 'Pacific/Kiritimati';
+      break;
+    case 660:
+      timezone = 'Etc/GMT+11';
+      break;
+    case 600:
+      timezone = 'Pacific/Honolulu';
+      break;
+    case 570:
+      timezone = 'Pacific/Marquesas';
+      break;
+    case 540:
+      timezone = 'America/Alaska';
+      break;
+    case 480:
+      timezone = 'America/Los_Angeles';
+      break;
+    case 420:
+      timezone = 'America/Phoenix';
+      break;
+    case 360:
+      timezone = 'America/Guatemala';
+      break;
+    case 300:
+      timezone = 'America/Cancun';
+      break;
+    case 240:
+      timezone = 'America/Halifax';
+      break;
+    case 210:
+      timezone = 'America/St_Johns';
+      break;
+    case 180:
+      timezone = 'America/Araguaina';
+      break;
+    case 120:
+      timezone = 'Etc/GMT+2';
+      break;
+    case 60:
+      timezone = 'Atlantic/Azores';
+      break;
+    case 0:
+      timezone = 'Africa/Abidjan';
+      break;
+    case -60:
+      timezone = 'Europe/Berlin';
+      break;
+    case -120:
+      timezone = 'Asia/Amman';
+      break;
+    case -180:
+      timezone = 'Europe/Istanbul';
+      break;
+    case -210:
+      timezone = 'Asia/Tehran';
+      break;
+    case -240:
+      timezone = 'Asia/Dubai';
+      break;
+    case -270:
+      timezone = 'Asia/Kabul';
+      break;
+    case -300:
+      timezone = 'Asia/Tashkent';
+      break;
+    case -330:
+      timezone = 'Asia/Colombo';
+      break;
+    case -345:
+      timezone = 'Asia/Katmandu';
+      break;
+    case -360:
+      timezone = 'Asia/Almaty';
+      break;
+    case -390:
+      timezone = 'Asia/Rangoon';
+      break;
+    case -420:
+      timezone = 'Asia/Bangkok';
+      break;
+    case -480:
+      timezone = 'Asia/Shanghai';
+      break;
+    case -510:
+      timezone ='Asia/Pyongyang';
+      break;
+    case -540:
+      timezone = 'Asia/Tokyo';
+      break;
+    case -570:
+      timezone ='Australia/Adelaide';
+      break;
+    case -600:
+      timezone = 'Australia/Brisbane';
+      break;
+    case -630:
+      timezone = 'Australia/Lord_Howe';
+      break;
+    case -660:
+      timezone = 'Pacific/Bougainville';
+      break;
+    case -720:
+      timezone = 'Asia/Kamchatka';
+      break;
+    case -765:
+      timezone = 'Pacific/Chatham';
+      break;
+    case -780:
+      timezone = 'Etc/GMT-13';
+      break;
+    case -840:
+      timezone = 'Pacific/Kiritimati';
+      break;
+    default:
+      timezone = 'Unknown';
+      break;
+
+  }
+  return timezone;
+}
+
