@@ -1,8 +1,16 @@
 /*
   Script to format and generate a new .ics calendar event file.
-  Currently encompasses the following fields: summary, location (string), dtstamp, start/end date/time, UID
-  TODO: timezone identifier, priority, geographic position, classification, version, recurring events
+  Currently encompasses the following fields: summary, location (string), dtstamp, start/end date/time, UID, timezone identifier
+  TODO: priority, geographic position, classification, version, recurring events
  */
+
+//sets the default date values
+window.onload = function() {
+  const date = new Date();
+  const dt = createDate(date);
+  document.getElementById("dateStart").value = dt;
+  document.getElementById("dateEnd").value = dt;
+}
 
 //creates a new .ics file
 function createFile() {
@@ -26,6 +34,14 @@ function createVevent() {
   event = event.concat(`DTEND:${createDT(document.getElementById('dateEnd').value, document.getElementById('end-time').value)}\r\n`);
 
   return `BEGIN:VEVENT\r\n${event}END:VEVENT\r\n`;
+}
+
+//creates date in the form YYYY-MM-DD
+function createDate (date) {
+  let dt = `${date.getFullYear()}-`;
+  dt = dt.concat(("0" + (date.getMonth() + 1)).slice(-2) + "-");
+  dt = dt.concat(("0" + date.getDate()).slice(-2));
+  return dt;
 }
 
 //creates date/time stamp string formatted for .ics files
