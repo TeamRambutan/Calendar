@@ -2,6 +2,14 @@
   <library name="meteor-packages-auto-import-browser" type="javaScript">
     <properties>
       <sourceFilesUrls>
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_simple-schema/1.5.4/web.browser/mongo-object.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_simple-schema/1.5.4/web.browser/simple-schema-context.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_simple-schema/1.5.4/web.browser/simple-schema-utility.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_simple-schema/1.5.4/web.browser/simple-schema-validation-new.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_simple-schema/1.5.4/web.browser/simple-schema-validation.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_simple-schema/1.5.4/web.browser/simple-schema.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_simple-schema/1.5.4/web.browser/string-humanize.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_simple-schema/1.5.4/web.browser/string-polyfills.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/allow-deny/1.1.0/web.browser/allow-deny-tests.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/allow-deny/1.1.0/web.browser/allow-deny.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/autoupdate/1.4.1/web.browser/autoupdate_client.js" />
@@ -117,6 +125,7 @@
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/logging/1.1.20/web.browser/logging.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/logging/1.1.20/web.browser/logging_cordova.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/logging/1.1.20/web.browser/logging_test.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/mdg_validation-error/0.2.0/web.browser/validation-error.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/meteorhacks_picker/1.0.3/web.browser/packages/meteorhacks_picker.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/meteortesting_browser-tests/1.0.0/web.browser/browser/chromedriver.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/meteortesting_browser-tests/1.0.0/web.browser/browser/nightmare.js" />
@@ -220,6 +229,14 @@
       </sourceFilesUrls>
     </properties>
     <CLASSES>
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_simple-schema/1.5.4/web.browser/mongo-object.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_simple-schema/1.5.4/web.browser/simple-schema-context.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_simple-schema/1.5.4/web.browser/simple-schema-utility.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_simple-schema/1.5.4/web.browser/simple-schema-validation-new.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_simple-schema/1.5.4/web.browser/simple-schema-validation.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_simple-schema/1.5.4/web.browser/simple-schema.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_simple-schema/1.5.4/web.browser/string-humanize.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_simple-schema/1.5.4/web.browser/string-polyfills.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/allow-deny/1.1.0/web.browser/allow-deny-tests.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/allow-deny/1.1.0/web.browser/allow-deny.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/autoupdate/1.4.1/web.browser/autoupdate_client.js" />
@@ -335,6 +352,7 @@
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/logging/1.1.20/web.browser/logging.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/logging/1.1.20/web.browser/logging_cordova.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/logging/1.1.20/web.browser/logging_test.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/mdg_validation-error/0.2.0/web.browser/validation-error.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/meteorhacks_picker/1.0.3/web.browser/packages/meteorhacks_picker.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/meteortesting_browser-tests/1.0.0/web.browser/browser/chromedriver.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/meteortesting_browser-tests/1.0.0/web.browser/browser/nightmare.js" />

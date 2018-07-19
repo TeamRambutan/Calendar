@@ -4,12 +4,11 @@ import 'fullcalendar';
 
 Template.calendar.onCreated(function calendarOnCreated() {
     // counter starts at 0
-    this.counter = new ReactiveVar(0);
+    this.clicked = new ReactiveVar(false);
 });
 
 Template.calendar.onRendered(function() {
     $(document).ready(function() {
-            console.log($('#calendar'));
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
@@ -85,14 +84,20 @@ Template.calendar.helpers({
     counter() {
         return Template.instance().counter.get();
     },
-/*    calendarUi() {
+    show() {
+        $('.board')
+            .sidebar('toggle')
+        ;
+    },
+    /*    calendarUi() {
         return Template.instance().counter.get();
     },*/
 });
 
 Template.calendar.events({
-    'click button'(event, instance) {
+    'click #board'(event, instance) {
         // increment the counter when button is clicked
-        instance.counter.set(instance.counter.get() + 1);
+        //instance.counter.set(instance.counter.get() + 1);
+        instance.clicked.set(true);
     },
 });
