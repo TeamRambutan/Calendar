@@ -21,22 +21,27 @@
 <div class="grey-background">
   <div class="ui container colorblocktop">
     <h2 class="ui header">Fill out the following fields:</h2>
-    <input type="text" id="summary" placeholder="Summary">
-    </br></br>
-    <input type="text" id="location" placeholder="Location">
-    </br></br>
-    Start date: <input type="date" id="dateStart">
-    </br></br>
-    Start Time: <input type="time" id="start-time" value="00:00">
-    </br></br>
-    End date: <input type="date" id="dateEnd" min="2018-07-14">
-    </br></br>
-    End Time: <input type="time" id="end-time" value="00:00">
 
-    <h2>Download event file</h2>
-    <div class="ui button" onclick="createFile()">
-      <i class="file outline icon"></i>download
-    </div>
+    <form onsubmit="return false">
+      <input type="text" id="summary" placeholder="Summary">
+      </br></br>
+      <input type="text" id="location" placeholder="Location">
+      </br></br>
+      Start date: <input type="date" name="dateStart" id="dateStart" required>
+      </br></br>
+      Start Time: <input type="time" id="start-time" value="00:00" required>
+      </br></br>
+      End date: <input type="date" name="dateEnd" id="dateEnd" required>
+      </br></br>
+      End Time: <input type="time" id="end-time" value="00:00" required>
+
+      <h2>Download event file</h2>
+      <button class="ui button" type="submit" id="submit" onclick="submitForm()">
+        <i class="file outline icon"></i>download
+      </button>
+
+    </form>
+
   </div>
 </div>
 

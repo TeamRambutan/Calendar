@@ -10,6 +10,36 @@ window.onload = function() {
   const dt = createDate(date);
   document.getElementById("dateStart").value = dt;
   document.getElementById("dateEnd").value = dt;
+  document.getElementById("dateEnd").min = document.getElementById("dateStart").value;
+  document.getElementById("dateStart").onchange = function() {
+    document.getElementById("dateEnd").min = document.getElementById("dateStart").value;
+    console.log(document.getElementById("dateEnd").value);
+  };
+}
+
+function submitForm() {
+  const start = document.getElementById("dateStart").value;
+  const end = document.getElementById("dateEnd").value;
+  if( end > start ) {
+    createFile();
+    return;
+  }
+  else if( end == start ) {
+    const startTime = document.getElementById("start-time").value;
+    const endTime = document.getElementById("end-time").value;
+    if( endTime >= startTime ) {
+      createFile();
+      return;
+    }
+    else {
+      alert("Error: End time should not be before start time");
+      return;
+    }
+  }
+  else {
+    alert("Error: End date should not be before start date");
+    return;
+  }
 }
 
 //creates a new .ics file
