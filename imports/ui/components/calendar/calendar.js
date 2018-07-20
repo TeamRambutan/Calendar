@@ -84,20 +84,11 @@ Template.calendar.helpers({
     counter() {
         return Template.instance().counter.get();
     },
-    show() {
-        $('.board')
-            .sidebar('toggle')
-        ;
-    },
     /*    calendarUi() {
         return Template.instance().counter.get();
     },*/
 });
 
 Template.calendar.events({
-    'click #board'(event, instance) {
-        // increment the counter when button is clicked
-        //instance.counter.set(instance.counter.get() + 1);
-        instance.clicked.set(true);
-    },
+
 });

@@ -1,25 +1,13 @@
 import './board.html';
-import $ from 'jquery';
+//import $ from 'jquery';
 
-Template.hello.onCreated(function helloOnCreated() {
+Template.board.onCreated(function boardOnCreated() {
   // counter starts at 0
-  this.clicked;
 });
 
-Template.hello.helpers({
-    show() {
-      if(!Template.instance().) {
-          $('.board')
-              .sidebar('toggle')
-          ;
-          Template.instance().clicked.set(false);
-      }
-    },
+Template.board.helpers({
 });
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.clicked.set(instance.clicked.get() + 1);
-  },
+Template.board.events({
+
 });

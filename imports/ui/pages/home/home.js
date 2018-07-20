@@ -3,21 +3,17 @@ import './home.html';
 import '../../components/hello/hello.js';
 import '../../components/info/info.js';
 import '../../components/calendar/calendar.js';
-
-Template.home.onCreated(function helloOnCreated() {
-    // counter starts at 0
-    this.isBoardVisible = new ReactiveVar(false);
-});
-
-Template.home.helpers({
-    counter() {
-        return Template.instance().counter.get();
-    },
-});
+import '../../components/board/board.js';
+import $ from "jquery";
 
 Template.home.events({
-    'click button'(event, instance) {
+    'click .board'(event, instance) {
         // increment the counter when button is clicked
-        instance.counter.set(instance.counter.get() + 1);
+        //instance.counter.set(instance.counter.get() + 1);
+        event.preventDefault();
+        console.log('home');
+        $('.board')
+            .sidebar('toggle')
+        ;
     },
 });
