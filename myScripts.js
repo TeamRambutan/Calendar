@@ -1,8 +1,46 @@
 /*
   Script to format and generate a new .ics calendar event file.
-  Currently encompasses the following fields: summary, location (string), dtstamp, start/end date/time, UID
-  TODO: timezone identifier, priority, geographic position, classification, version, recurring events
+  Currently encompasses the following fields: summary, location (string), dtstamp, start/end date/time, UID, timezone identifier
+  TODO: priority, geographic position, classification, version, recurring events
  */
+
+//sets the default date values
+window.onload = function() {
+  const date = new Date();
+  const dt = createDate(date);
+  document.getElementById("dateStart").value = dt;
+  document.getElementById("dateEnd").value = dt;
+  document.getElementById("dateEnd").min = document.getElementById("dateStart").value;
+  document.getElementById("dateStart").onchange = function() {
+    document.getElementById("dateEnd").min = document.getElementById("dateStart").value;
+  };
+}
+
+//validation check (verifies end date/time is not before start date/time)
+function submitForm() {
+  const start = document.getElementById("dateStart").value;
+  const end = document.getElementById("dateEnd").value;
+  if( end > start ) {
+    createFile();
+    return;
+  }
+  else if( end == start ) {
+    const startTime = document.getElementById("start-time").value;
+    const endTime = document.getElementById("end-time").value;
+    if( endTime >= startTime ) {
+      createFile();
+      return;
+    }
+    else {
+      alert("Error: End time should not be before start time");
+      return;
+    }
+  }
+  else {
+    alert("Error: End date should not be before start date");
+    return;
+  }
+}
 
 //creates a new .ics file
 function createFile() {
@@ -15,18 +53,24 @@ function createFile() {
 function createVevent() {
   const date = new Date();
   const dtStamp = createDTSTAMP(date);
-  console.log(date);
 
   let event = `DTSTAMP:${dtStamp}\r\n`;
   event = event.concat(`UID:${dtStamp}-${document.getElementById('start-time').value.substring(3, 5)}@example.com\r\n`);
-  console.log(event);
-  event = event.concat(`TZID:${createTZid(date)}\r\n`);
   event = event.concat(`LOCATION:${document.getElementById('location').value}\r\n`);
   event = event.concat(`SUMMARY:${document.getElementById('summary').value}\r\n`);
+  event = event.concat(`TZID:${createTZid(date)}\r\n`);
   event = event.concat(`DTSTART:${createDT(document.getElementById('dateStart').value, document.getElementById('start-time').value)}\r\n`);
   event = event.concat(`DTEND:${createDT(document.getElementById('dateEnd').value, document.getElementById('end-time').value)}\r\n`);
 
   return `BEGIN:VEVENT\r\n${event}END:VEVENT\r\n`;
+}
+
+//creates date in the form YYYY-MM-DD
+function createDate (date) {
+  let dt = `${date.getFullYear()}-`;
+  dt = dt.concat(("0" + (date.getMonth() + 1)).slice(-2) + "-");
+  dt = dt.concat(("0" + date.getDate()).slice(-2));
+  return dt;
 }
 
 //creates date/time stamp string formatted for .ics files
@@ -38,7 +82,6 @@ function createDTSTAMP (date) {
   dt = dt.concat(("0" + date.getHours()).slice(-2));
   dt = dt.concat(("0" + date.getMinutes()).slice(-2));
   dt = dt.concat("00");
-  console.log(dt);
   return dt;
 }
 
@@ -51,7 +94,6 @@ function createDT (date, time) {
   dt = dt.concat(time.substring(0, 2));
   dt = dt.concat(time.substring(3, 5));
   dt = dt.concat("00");
-  console.log(dt);
   return dt;
 }
 function createTZid (time){ //creates tzid using gettimezoneoffset which is utc minus user's current time
