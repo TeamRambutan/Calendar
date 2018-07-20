@@ -13,7 +13,6 @@ window.onload = function() {
   document.getElementById("dateEnd").min = document.getElementById("dateStart").value;
   document.getElementById("dateStart").onchange = function() {
     document.getElementById("dateEnd").min = document.getElementById("dateStart").value;
-    console.log(document.getElementById("dateEnd").value);
   };
 }
 
@@ -53,11 +52,9 @@ function createFile() {
 function createVevent() {
   const date = new Date();
   const dtStamp = createDTSTAMP(date);
-  console.log(date);
 
   let event = `DTSTAMP:${dtStamp}\r\n`;
   event = event.concat(`UID:${dtStamp}-${document.getElementById('start-time').value.substring(3, 5)}@example.com\r\n`);
-  console.log(event);
   event = event.concat(`LOCATION:${document.getElementById('location').value}\r\n`);
   event = event.concat(`SUMMARY:${document.getElementById('summary').value}\r\n`);
   event = event.concat(`DTSTART:${createDT(document.getElementById('dateStart').value, document.getElementById('start-time').value)}\r\n`);
@@ -83,7 +80,6 @@ function createDTSTAMP (date) {
   dt = dt.concat(("0" + date.getHours()).slice(-2));
   dt = dt.concat(("0" + date.getMinutes()).slice(-2));
   dt = dt.concat("00");
-  console.log(dt);
   return dt;
 }
 
@@ -96,6 +92,5 @@ function createDT (date, time) {
   dt = dt.concat(time.substring(0, 2));
   dt = dt.concat(time.substring(3, 5));
   dt = dt.concat("00");
-  console.log(dt);
   return dt;
 }
