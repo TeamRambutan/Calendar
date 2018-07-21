@@ -90,5 +90,12 @@ Template.calendar.helpers({
 });
 
 Template.calendar.events({
-
+    'click .showBoard'(event, instance) {
+        // increment the counter when button is clicked
+        //instance.counter.set(instance.counter.get() + 1);
+        event.preventDefault();
+        $('.board')
+            .sidebar('toggle')
+        ;
+    },
 });
