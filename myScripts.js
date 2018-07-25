@@ -1,7 +1,7 @@
 /*
   Script to format and generate a new .ics calendar event file.
-  Currently encompasses the following fields: summary, location (string), dtstamp, start/end date/time, UID, timezone identifier
-  TODO: priority, geographic position, classification, version, recurring events
+  Currently encompasses the following fields: summary, location (string), dtstamp, start/end date/time, UID, timezone identifier, priority, 
+  TODO: geographic position, classification, version, recurring events
  */
 
 
@@ -21,8 +21,16 @@ window.onload = function() {
 }
 
 
-//validation check (verifies end date/time is not before start date/time)
+//validation check
 function submitForm() {
+  //verify there is a summary
+  const summary = document.getElementById("summary").value;
+  if(!summary) {
+    alert("The summary field is required");
+    console.assert(false, 'No summary');
+    return;
+  }
+  //verify end date/time is not before start date/time
   const start = document.getElementById("dateStart").value;
   const end = document.getElementById("dateEnd").value;
   if( end > start ) {
@@ -70,6 +78,8 @@ function createVevent() {
   console.assert(testdate === "2018-01-01", `createDate function, ${testdate}`);
   const testdt = createDT(testdate, '00:00');
   console.assert( testdt === '20180101T000000', `createDT function, ${testdt}`);
+  const testPriority = document.getElementById('priority').value;
+  console.assert(testPriority >= 0 && testPriority <= 9, `Invalid priority, ${testPriority}`)
   //// end: unit tests ////
 
   let event = `DTSTAMP:${dtStamp}\r\n`;
@@ -79,6 +89,8 @@ function createVevent() {
   event = event.concat(`TZID:${createTZid(date)}\r\n`);
   event = event.concat(`DTSTART:${createDT(document.getElementById('dateStart').value, document.getElementById('start-time').value)}\r\n`);
   event = event.concat(`DTEND:${createDT(document.getElementById('dateEnd').value, document.getElementById('end-time').value)}\r\n`);
+  // TODO: optional
+  event = event.concat(`PRIORITY:${document.getElementById('priority').value}\r\n`);
 
   return `BEGIN:VEVENT\r\n${event}END:VEVENT\r\n`;
 }

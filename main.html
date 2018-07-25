@@ -35,6 +35,14 @@
       End date: <input type="date" name="dateEnd" id="dateEnd" required>
       </br></br>
       End Time: <input type="time" id="end-time" value="00:00" required>
+      </br></br>
+      Priority:
+      <select id="priority">
+        <option value="0">None</option>
+        <option value="9">Low</option>
+        <option value="5">Medium</option>
+        <option value="1">High</option>
+      </select>
 
       <h2>Download event file</h2>
       <button class="ui button" type="submit" id="submit" onclick="submitForm()">
