@@ -4,17 +4,22 @@
   TODO: priority, geographic position, classification, version, recurring events
  */
 
+
 //sets the default date values
 window.onload = function() {
   const date = new Date();
   const dt = createDate(date);
-  document.getElementById("dateStart").value = dt;
-  document.getElementById("dateEnd").value = dt;
-  document.getElementById("dateEnd").min = document.getElementById("dateStart").value;
-  document.getElementById("dateStart").onchange = function() {
-    document.getElementById("dateEnd").min = document.getElementById("dateStart").value;
+  var dateStart = document.getElementById("dateStart");
+  var dateEnd = document.getElementById("dateEnd");
+  dateStart.value = dt;
+  dateEnd.value = dt;
+  dateEnd.min = dateStart.value;
+  dateStart.onchange = function() {
+    dateEnd.min = dateStart.value;
   };
+  console.assert((dateEnd.value >= dateStart.value), `end date: ${dateEnd.value}, start date: ${dateStart.value}`);
 }
+
 
 //validation check (verifies end date/time is not before start date/time)
 function submitForm() {
@@ -33,14 +38,17 @@ function submitForm() {
     }
     else {
       alert("Error: End time should not be before start time");
+      console.assert((end == start) && (endTime < startTime), 'Invalid alert');
       return;
     }
   }
   else {
     alert("Error: End date should not be before start date");
+    console.assert(end < start, 'Invalid alert');
     return;
   }
 }
+
 
 //creates a new .ics file
 function createFile() {
@@ -49,10 +57,20 @@ function createFile() {
   saveAs(file, `${document.getElementById('summary').value}.ics`);
 }
 
+
 //creates a Vevent
 function createVevent() {
   const date = new Date();
   const dtStamp = createDTSTAMP(date);
+
+  //// begin: unit tests ////
+  const test = new Date(2018, 0, 1, 00, 00);
+  console.assert(createDTSTAMP(test) === '20180101T000000', `DTSTAMP function, ${createDTSTAMP(test)}`);
+  const testdate = createDate(test);
+  console.assert(testdate === "2018-01-01", `createDate function, ${testdate}`);
+  const testdt = createDT(testdate, '00:00');
+  console.assert( testdt === '20180101T000000', `createDT function, ${testdt}`);
+  //// end: unit tests ////
 
   let event = `DTSTAMP:${dtStamp}\r\n`;
   event = event.concat(`UID:${dtStamp}-${document.getElementById('start-time').value.substring(3, 5)}@example.com\r\n`);
@@ -65,6 +83,7 @@ function createVevent() {
   return `BEGIN:VEVENT\r\n${event}END:VEVENT\r\n`;
 }
 
+
 //creates date in the form YYYY-MM-DD
 function createDate (date) {
   let dt = `${date.getFullYear()}-`;
@@ -72,6 +91,7 @@ function createDate (date) {
   dt = dt.concat(("0" + date.getDate()).slice(-2));
   return dt;
 }
+
 
 //creates date/time stamp string formatted for .ics files
 function createDTSTAMP (date) {
@@ -85,6 +105,7 @@ function createDTSTAMP (date) {
   return dt;
 }
 
+
 //creates date/time start/end string formatted for .ics files
 function createDT (date, time) {
   let dt = `${date.substring(0, 4)}`;
@@ -96,7 +117,10 @@ function createDT (date, time) {
   dt = dt.concat("00");
   return dt;
 }
-function createTZid (time){ //creates tzid using gettimezoneoffset which is utc minus user's current time
+
+
+//creates tzid using gettimezoneoffset which is utc minus user's current time
+function createTZid (time){
   let tzos= time.getTimezoneOffset();
   switch (tzos){
     case 720:
@@ -216,8 +240,6 @@ function createTZid (time){ //creates tzid using gettimezoneoffset which is utc 
     default:
       timezone = 'Unknown';
       break;
-
   }
   return timezone;
 }
-
