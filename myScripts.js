@@ -1,12 +1,11 @@
 /*
   Script to format and generate a new .ics calendar event file.
-  Currently encompasses the following fields: summary, location (string), dtstamp, start/end date/time, UID, timezone identifier, priority, 
+  Currently encompasses the following fields: summary, location (string), dtstamp, start/end date/time, UID, timezone identifier, priority,
   TODO: geographic position, classification, version, recurring events
  */
 
-
 //sets the default date values
-window.onload = function() {
+window.onload = function () {
   const date = new Date();
   const dt = createDate(date);
   var dateStart = document.getElementById("dateStart");
@@ -14,18 +13,17 @@ window.onload = function() {
   dateStart.value = dt;
   dateEnd.value = dt;
   dateEnd.min = dateStart.value;
-  dateStart.onchange = function() {
+  dateStart.onchange = function () {
     dateEnd.min = dateStart.value;
   };
   console.assert((dateEnd.value >= dateStart.value), `end date: ${dateEnd.value}, start date: ${dateStart.value}`);
 }
 
-
 //validation check
 function submitForm() {
   //verify there is a summary
   const summary = document.getElementById("summary").value;
-  if(!summary) {
+  if (!summary) {
     alert("The summary field is required");
     console.assert(false, 'No summary');
     return;
@@ -33,30 +31,30 @@ function submitForm() {
   //verify end date/time is not before start date/time
   const start = document.getElementById("dateStart").value;
   const end = document.getElementById("dateEnd").value;
-  if( end > start ) {
+  if (end > start) {
     createFile();
     return;
   }
-  else if( end == start ) {
-    const startTime = document.getElementById("start-time").value;
-    const endTime = document.getElementById("end-time").value;
-    if( endTime >= startTime ) {
-      createFile();
-      return;
+  else
+    if (end == start) {
+      const startTime = document.getElementById("start-time").value;
+      const endTime = document.getElementById("end-time").value;
+      if (endTime >= startTime) {
+        createFile();
+        return;
+      }
+      else {
+        alert("Error: End time should not be before start time");
+        console.assert((end == start) && (endTime < startTime), 'Invalid alert');
+        return;
+      }
     }
     else {
-      alert("Error: End time should not be before start time");
-      console.assert((end == start) && (endTime < startTime), 'Invalid alert');
+      alert("Error: End date should not be before start date");
+      console.assert(end < start, 'Invalid alert');
       return;
     }
-  }
-  else {
-    alert("Error: End date should not be before start date");
-    console.assert(end < start, 'Invalid alert');
-    return;
-  }
 }
-
 
 //creates a new .ics file
 function createFile() {
@@ -64,7 +62,6 @@ function createFile() {
   const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
   saveAs(file, `${document.getElementById('summary').value}.ics`);
 }
-
 
 //creates a Vevent
 function createVevent() {
@@ -77,36 +74,37 @@ function createVevent() {
   const testdate = createDate(test);
   console.assert(testdate === "2018-01-01", `createDate function, ${testdate}`);
   const testdt = createDT(testdate, '00:00');
-  console.assert( testdt === '20180101T000000', `createDT function, ${testdt}`);
+  console.assert(testdt === '20180101T000000', `createDT function, ${testdt}`);
   const testPriority = document.getElementById('priority').value;
-  console.assert(testPriority >= 0 && testPriority <= 9, `Invalid priority, ${testPriority}`)
+  console.assert(testPriority >= 0 && testPriority <= 9, `Invalid priority, ${testPriority}`);
+  const testClass = document.getElementById('classification').value;
+  console.assert(testClass === 'PUBLIC' || testClass === 'PRIVATE' || testClass === 'CONFIDENTIAL', `Invalid priority, ${testClass}`);
   //// end: unit tests ////
 
   let event = `DTSTAMP:${dtStamp}\r\n`;
   event = event.concat(`UID:${dtStamp}-${document.getElementById('start-time').value.substring(3, 5)}@example.com\r\n`);
-  event = event.concat(`LOCATION:${document.getElementById('location').value}\r\n`);
+  event = event.concat(`LOCATION:${document.getElementById('location').value}\r\n`); //optional?
   event = event.concat(`SUMMARY:${document.getElementById('summary').value}\r\n`);
   event = event.concat(`TZID:${createTZid(date)}\r\n`);
   event = event.concat(`DTSTART:${createDT(document.getElementById('dateStart').value, document.getElementById('start-time').value)}\r\n`);
   event = event.concat(`DTEND:${createDT(document.getElementById('dateEnd').value, document.getElementById('end-time').value)}\r\n`);
   // TODO: optional
   event = event.concat(`PRIORITY:${document.getElementById('priority').value}\r\n`);
+  event = event.concat(`CLASSIFICATION:${document.getElementById('classification').value}\r\n`);
 
   return `BEGIN:VEVENT\r\n${event}END:VEVENT\r\n`;
 }
 
-
 //creates date in the form YYYY-MM-DD
-function createDate (date) {
+function createDate(date) {
   let dt = `${date.getFullYear()}-`;
   dt = dt.concat(("0" + (date.getMonth() + 1)).slice(-2) + "-");
   dt = dt.concat(("0" + date.getDate()).slice(-2));
   return dt;
 }
 
-
 //creates date/time stamp string formatted for .ics files
-function createDTSTAMP (date) {
+function createDTSTAMP(date) {
   let dt = `${date.getFullYear()}`;
   dt = dt.concat(("0" + (date.getMonth() + 1)).slice(-2));
   dt = dt.concat(("0" + date.getDate()).slice(-2));
@@ -117,9 +115,8 @@ function createDTSTAMP (date) {
   return dt;
 }
 
-
 //creates date/time start/end string formatted for .ics files
-function createDT (date, time) {
+function createDT(date, time) {
   let dt = `${date.substring(0, 4)}`;
   dt = dt.concat(date.substring(5, 7));
   dt = dt.concat(date.substring(8, 10));
@@ -130,11 +127,10 @@ function createDT (date, time) {
   return dt;
 }
 
-
 //creates tzid using gettimezoneoffset which is utc minus user's current time
-function createTZid (time){
-  let tzos= time.getTimezoneOffset();
-  switch (tzos){
+function createTZid(time) {
+  let tzos = time.getTimezoneOffset();
+  switch (tzos) {
     case 720:
       timezone = 'Pacific/Kiritimati';
       break;
@@ -220,13 +216,13 @@ function createTZid (time){
       timezone = 'Asia/Shanghai';
       break;
     case -510:
-      timezone ='Asia/Pyongyang';
+      timezone = 'Asia/Pyongyang';
       break;
     case -540:
       timezone = 'Asia/Tokyo';
       break;
     case -570:
-      timezone ='Australia/Adelaide';
+      timezone = 'Australia/Adelaide';
       break;
     case -600:
       timezone = 'Australia/Brisbane';
