@@ -1,7 +1,7 @@
 /*
   Script to format and generate a new .ics calendar event file.
-  Currently encompasses the following fields: summary, location (string), dtstamp, start/end date/time, UID, timezone identifier, priority,
-  TODO: geographic position, classification, version, recurring events
+  Currently encompasses the following fields: summary, location (string), dtstamp, start/end date/time, UID, timezone identifier, priority, classification, version
+  TODO: geographic position, recurring events?
  */
 
 //sets the default date values
@@ -58,9 +58,16 @@ function submitForm() {
 
 //creates a new .ics file
 function createFile() {
-  const data = `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nCALSCALE:GREGORIAN\r\n${createVevent()}END:VCALENDAR`;
-  const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
-  saveAs(file, `${document.getElementById('summary').value}.ics`);
+  version = document.getElementById('version').value;
+  const data = `BEGIN:VCALENDAR\r\nVERSION:${version}\r\nCALSCALE:GREGORIAN\r\n${createVevent()}END:VCALENDAR`;
+  if(version == '1.0') {
+    const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
+    saveAs(file, `${document.getElementById('summary').value}.vcs`);
+  }
+  else {
+    const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
+    saveAs(file, `${document.getElementById('summary').value}.ics`);
+  }
 }
 
 //creates a Vevent

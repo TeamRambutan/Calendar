@@ -22,11 +22,12 @@
 <div class="grey-background">
   <div class="ui container colorblocktop">
     <h2 class="ui header">Fill out the following fields:</h2>
+    <p class="required">* required</p>
 
     <form onsubmit="return false">
-      <input type="text" id="summary" placeholder="Summary" required>
+      Summary: <input type="text" id="summary" placeholder="*" required>
       </br></br>
-      <input type="text" id="location" placeholder="Location">
+      Location: <input type="text" id="location">
       </br></br>
       Start date: <input type="date" name="dateStart" id="dateStart" required>
       </br></br>
@@ -49,6 +50,12 @@
         <option value="PUBLIC">Public</option>
         <option value="PRIVATE">Private</option>
         <option value="CONFIDENTIAL">Confidential</option>
+      </select>
+      </br></br>
+      Version:
+      <select id="version" required>
+        <option value="2.0">2.0 (iCalendar)</option>
+        <option value="1.0">1.0 (vCalendar)</option>
       </select>
 
       <h2>Download event file</h2>
