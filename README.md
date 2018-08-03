@@ -2,7 +2,7 @@
 
 This is our final project for ICS 414 (Software Engineering II) which entails the following:
 
-The task, outlined below, is to create .ics “event files”, as described in RFC 5545 https://tools.ietf.org/html/rfc5545 . Of course, you won’t be implementing everything that’s in RFC 5545! I don’t know of any commercial implementation of everything in RFC 5545, so you’ll be doing a small piece. Your system will generate event files – you are not building a system to read event files. You can use an existing calendaring system like Outlook, Google Calendar, or Mac OS Calendar to read files (hint: that’s a good way to test the output of your system). You are building a system to create .ics files that can be emailed or shared, and read into the recipient’s calendars.
+The task, outlined below, is to create .ics “event files”, as described in RFC 5545 https://tools.ietf.org/html/rfc5545 . Of course, you won’t be implementing everything that’s in RFC 5545! I don’t know of any commercial implementation of everything in RFC 5545, so you’ll be doing a small piece. Your system will generate event files – you are not building a system to read event files. You can use an existing calendaring system like Outlook, Google Calendar, or Mac OS Calendar to read files. You are building a system to create .ics files that can be emailed or shared, and read into the recipient’s calendars.
 
 Required functionality. You are developing a stand-alone application to create .ics event files. You must demonstrate the following are implemented:
 * Version (section 3.7.4 of RFC 5545)
