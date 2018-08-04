@@ -2,7 +2,7 @@
 
 ## ICS 414 (Software Engineering II) final project
 
-Our system creates .ics “event files”, as described in RFC 5545 https://tools.ietf.org/html/rfc5545 . You can then use existing calendaring system like Outlook, Google Calendar, or Mac OS Calendar to read files. Our application allows users to create iCalendar (or vCalendar) event files that can be emailed or shared, and read into the recipient’s calendars.
+Our system creates .ics “event files”, as described in RFC 5545 https://tools.ietf.org/html/rfc5545 . Once you create and download your custom event file, you can then use existing calendaring system like Outlook, Google Calendar, or Mac OS Calendar to read files. Our application allows users to create iCalendar (or vCalendar) event files that can be emailed or shared, and read into the recipient’s calendars.
 
 Current functionality:
 * Version (section 3.7.4 of RFC 5545)
