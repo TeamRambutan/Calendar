@@ -1,7 +1,7 @@
 /*
   Script to format and generate a new .ics calendar event file.
-  Currently encompasses the following fields: summary, location (string), dtstamp, start/end date/time, UID, timezone identifier, priority, classification, version
-  TODO: geographic position, recurring events?
+  Currently encompasses the following fields: summary, location (string), dtstamp, start/end date/time, UID, timezone identifier, priority, classification, version, recurring events
+  TODO: geographic position
  */
 
 //sets the default date values, hides advanced fields
