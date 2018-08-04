@@ -26,7 +26,7 @@ window.onload = function () {
 function toggleAdvanced() {
   [].forEach.call(document.getElementsByClassName('advanced'), function (el) {
     el.style.display = (el.style.display === 'none') ? 'block' : 'none';
-    document.getElementById('advanced').innerText = (el.style.display === 'none') ? 'show advanced' : 'hide advanced';
+    document.getElementById('advanced').innerText = (el.style.display === 'none') ? 'Show Advanced' : 'Hide Advanced';
   });
 }
 
@@ -39,6 +39,15 @@ function submitForm() {
     console.assert(false, 'No summary');
     return;
   }
+  //verify valid reccurence (number of repeats)
+  if (document.getElementById('repeat').value != 'NONE') {
+    if ((isNaN(document.getElementById('numRepeats').value) || document.getElementById('numRepeats').value < 0) && document.getElementById('numRepeats').value) {
+      alert("Invalid number of reccurrences");
+      console.assert(isNaN(document.getElementById('numRepeats').value), 'Invalid recurrence');
+      return;
+    }
+  }
+  console.log(document.getElementById('numRepeats').value);
   //verify end date/time is not before start date/time
   const start = document.getElementById("dateStart").value;
   const end = document.getElementById("dateEnd").value;
@@ -46,7 +55,7 @@ function submitForm() {
     createFile();
     return;
   }
-  else
+  else {
     if (end == start) {
       const startTime = document.getElementById("start-time").value;
       const endTime = document.getElementById("end-time").value;
@@ -65,13 +74,14 @@ function submitForm() {
       console.assert(end < start, 'Invalid alert');
       return;
     }
+  }
 }
 
 //creates a new .ics file
 function createFile() {
   version = document.getElementById('version').value;
   const data = `BEGIN:VCALENDAR\r\nVERSION:${version}\r\nCALSCALE:GREGORIAN\r\n${createVevent()}END:VCALENDAR`;
-  if(version == '1.0') {
+  if (version == '1.0') {
     const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
     saveAs(file, `${document.getElementById('summary').value}.vcs`);
   }
@@ -107,7 +117,14 @@ function createVevent() {
   event = event.concat(`SUMMARY:${document.getElementById('summary').value}\r\n`);
   event = event.concat(`TZID:${createTZid(date)}\r\n`);
   event = event.concat(`DTSTART:${createDT(document.getElementById('dateStart').value, document.getElementById('start-time').value)}\r\n`);
-  event = event.concat(`DTEND:${createDT(document.getElementById('dateEnd').value, document.getElementById('end-time').value)}\r\n`);
+  if (document.getElementById('repeat').value != 'NONE') {
+    event = event.concat(`RRULE:FREQ=${document.getElementById('repeat').value}`);
+    if(document.getElementById('numRepeats').value) {
+      event = event.concat(`;COUNT=${document.getElementById('numRepeats').value}`);
+    }
+    event = event.concat(`\r\n`);
+  }
+    event = event.concat(`DTEND:${createDT(document.getElementById('dateEnd').value, document.getElementById('end-time').value)}\r\n`);
   event = event.concat(`PRIORITY:${document.getElementById('priority').value}\r\n`);
   event = event.concat(`CLASSIFICATION:${document.getElementById('classification').value}\r\n`);
 

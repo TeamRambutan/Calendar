@@ -24,7 +24,7 @@
     <h2 class="ui header">Fill out the following fields:</h2>
     <p class="required">* required</p>
     <button class="ui button" id="advanced" onclick="toggleAdvanced()">
-      show advanced
+      Show Advanced
     </button>
 
     <form onsubmit="return false">
@@ -50,6 +50,19 @@
       End Time: <input type="time" id="end-time" value="00:00" required>
       </br></br>
       <div class="advanced">
+        Repeat:
+        <select id="repeat">
+          <option value="NONE">None</option>
+          <option value="HOURLY">Every Hour</option>
+          <option value="DAILY">Every Day</option>
+          <option value="WEEKLY">Every Week</option>
+          <option value="MONTHLY">Every Month</option>
+          <option value="YEARLY">Every Year</option>
+        </select>
+        &nbsp;&nbsp;&nbsp;
+        Number of repeats:
+        <input type="number" id="numRepeats" min="1" placeholder="infinite">
+        </br></br>
         Priority:
         <select id="priority">
           <option value="0">None</option>
@@ -67,7 +80,7 @@
       </div>
       <h2>Download event file</h2>
       <button class="ui button" type="submit" id="submit" onclick="submitForm()">
-        <i class="file outline icon"></i>download
+        <i class="file outline icon"></i>Download
       </button>
 
     </form>
