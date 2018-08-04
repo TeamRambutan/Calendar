@@ -10,6 +10,7 @@ Current functionality:
 public (default), private, or confidential.
 * Priority (3.8.1.9)
 * Summary (3.8.1.12)
+* Location (3.8.1.7)
 * DTSTART (3.8.2.4)
 * DTEND (3.8.2.2)
 * Time zone identifier (3.8.3.1)
