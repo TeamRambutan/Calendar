@@ -1,9 +1,10 @@
 body {
   margin-top: 50px;
+  background-color: lightgray;
 }
 
-.grey-background {
-  background-color: lightgray;
+.blue-background {
+  background-color: azure;
   padding-top: 20px;
   padding-bottom: 20px;
 }

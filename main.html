@@ -19,12 +19,24 @@
   <h1 class="ui header">Calendar Event File Generator</h1>
   <p>Create your own .ics event files to share across various online calendar systems!</p>
 </div>
-<div class="grey-background">
+<div class="blue-background">
   <div class="ui container colorblocktop">
     <h2 class="ui header">Fill out the following fields:</h2>
     <p class="required">* required</p>
+    <button class="ui button" id="advanced" onclick="toggleAdvanced()">
+      show advanced
+    </button>
 
     <form onsubmit="return false">
+      <div class="advanced">
+        </br>
+        Version:
+        <select id="version" required>
+          <option value="2.0">2.0 (iCalendar)</option>
+          <option value="1.0">1.0 (vCalendar)</option>
+        </select>
+      </div>
+      </br>
       Summary: <input type="text" id="summary" placeholder="*" required>
       </br></br>
       Location: <input type="text" id="location">
@@ -37,27 +49,22 @@
       </br></br>
       End Time: <input type="time" id="end-time" value="00:00" required>
       </br></br>
-      Priority:
-      <select id="priority">
-        <option value="0">None</option>
-        <option value="9">Low</option>
-        <option value="5">Medium</option>
-        <option value="1">High</option>
-      </select>
-      </br></br>
-      Classification:
-      <select id="classification">
-        <option value="PUBLIC">Public</option>
-        <option value="PRIVATE">Private</option>
-        <option value="CONFIDENTIAL">Confidential</option>
-      </select>
-      </br></br>
-      Version:
-      <select id="version" required>
-        <option value="2.0">2.0 (iCalendar)</option>
-        <option value="1.0">1.0 (vCalendar)</option>
-      </select>
-
+      <div class="advanced">
+        Priority:
+        <select id="priority">
+          <option value="0">None</option>
+          <option value="9">Low</option>
+          <option value="5">Medium</option>
+          <option value="1">High</option>
+        </select>
+        </br></br>
+        Classification:
+        <select id="classification">
+          <option value="PUBLIC">Public</option>
+          <option value="PRIVATE">Private</option>
+          <option value="CONFIDENTIAL">Confidential</option>
+        </select>
+      </div>
       <h2>Download event file</h2>
       <button class="ui button" type="submit" id="submit" onclick="submitForm()">
         <i class="file outline icon"></i>download

@@ -4,8 +4,11 @@
   TODO: geographic position, recurring events?
  */
 
-//sets the default date values
+//sets the default date values, hides advanced fields
 window.onload = function () {
+  [].forEach.call(document.getElementsByClassName('advanced'), function (el) {
+    el.style.display = 'none';
+  });
   const date = new Date();
   const dt = createDate(date);
   var dateStart = document.getElementById("dateStart");
@@ -17,6 +20,14 @@ window.onload = function () {
     dateEnd.min = dateStart.value;
   };
   console.assert((dateEnd.value >= dateStart.value), `end date: ${dateEnd.value}, start date: ${dateStart.value}`);
+}
+
+//show/hide the optional (advanced) fields
+function toggleAdvanced() {
+  [].forEach.call(document.getElementsByClassName('advanced'), function (el) {
+    el.style.display = (el.style.display === 'none') ? 'block' : 'none';
+    document.getElementById('advanced').innerText = (el.style.display === 'none') ? 'show advanced' : 'hide advanced';
+  });
 }
 
 //validation check
@@ -90,7 +101,7 @@ function createVevent() {
 
   let event = `DTSTAMP:${dtStamp}\r\n`;
   event = event.concat(`UID:${dtStamp}-${document.getElementById('start-time').value.substring(3, 5)}@example.com\r\n`);
-  event = event.concat(`LOCATION:${document.getElementById('location').value}\r\n`); //optional?
+  event = event.concat(`LOCATION:${document.getElementById('location').value}\r\n`); //optional
   event = event.concat(`SUMMARY:${document.getElementById('summary').value}\r\n`);
   event = event.concat(`TZID:${createTZid(date)}\r\n`);
   event = event.concat(`DTSTART:${createDT(document.getElementById('dateStart').value, document.getElementById('start-time').value)}\r\n`);
