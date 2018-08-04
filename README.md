@@ -25,7 +25,7 @@ Future functionality:
 
 * Clone this Calendar repository
 ``` git clone https://github.com/TeamRambutan/Calendar.git```
-* Open main.html in a browser window
+* Open main.html in a browser window (preferably Chrome)
 * Fill in the fields to create your own iCalendar (or vCalendar with version 1.0) event file with the extension .ics (or .vcs)
 * If your event requires more details, click on the button that says “Show Advanced” to fill in additional, optional fields
 * Once you have filled in your data, click on the “download” button (if there are issues with your input, such as an end date that is before the start date, an alert should appear to inform you to make the necessary changes)
