@@ -17,16 +17,29 @@
 <body>
 <div class="ui container">
   <h1 class="ui header">Calendar Event File Generator</h1>
-  <p>Create your own .ics event files to share across various online calendar systems!</p>
+  <p>Create your own calendar event files to share across various calendar systems!</p>
 </div>
-<div class="grey-background">
+<div class="blue-background">
   <div class="ui container colorblocktop">
     <h2 class="ui header">Fill out the following fields:</h2>
+    <p class="required">* required</p>
+    <button class="ui button" id="advanced" onclick="toggleAdvanced()">
+      Show Advanced
+    </button>
 
     <form onsubmit="return false">
-      <input type="text" id="summary" placeholder="Summary" required>
+      <div class="advanced">
+        </br>
+        Version:
+        <select id="version" required>
+          <option value="2.0">2.0 (iCalendar)</option>
+          <option value="1.0">1.0 (vCalendar)</option>
+        </select>
+      </div>
+      </br>
+      Summary: <input type="text" id="summary" placeholder="*" required>
       </br></br>
-      <input type="text" id="location" placeholder="Location">
+      Location: <input type="text" id="location">
       </br></br>
       Start date: <input type="date" name="dateStart" id="dateStart" required>
       </br></br>
@@ -36,24 +49,38 @@
       </br></br>
       End Time: <input type="time" id="end-time" value="00:00" required>
       </br></br>
-      Priority:
-      <select id="priority">
-        <option value="0">None</option>
-        <option value="9">Low</option>
-        <option value="5">Medium</option>
-        <option value="1">High</option>
-      </select>
-      </br></br>
-      Classification:
-      <select id="classification">
-        <option value="PUBLIC">Public</option>
-        <option value="PRIVATE">Private</option>
-        <option value="CONFIDENTIAL">Confidential</option>
-      </select>
-
+      <div class="advanced">
+        Repeat:
+        <select id="repeat">
+          <option value="NONE">None</option>
+          <option value="HOURLY">Every Hour</option>
+          <option value="DAILY">Every Day</option>
+          <option value="WEEKLY">Every Week</option>
+          <option value="MONTHLY">Every Month</option>
+          <option value="YEARLY">Every Year</option>
+        </select>
+        &nbsp;&nbsp;&nbsp;
+        Number of repeats:
+        <input type="number" id="numRepeats" min="1" placeholder="infinite">
+        </br></br>
+        Priority:
+        <select id="priority">
+          <option value="0">None</option>
+          <option value="9">Low</option>
+          <option value="5">Medium</option>
+          <option value="1">High</option>
+        </select>
+        </br></br>
+        Classification:
+        <select id="classification">
+          <option value="PUBLIC">Public</option>
+          <option value="PRIVATE">Private</option>
+          <option value="CONFIDENTIAL">Confidential</option>
+        </select>
+      </div>
       <h2>Download event file</h2>
       <button class="ui button" type="submit" id="submit" onclick="submitForm()">
-        <i class="file outline icon"></i>download
+        <i class="file outline icon"></i>Download
       </button>
 
     </form>

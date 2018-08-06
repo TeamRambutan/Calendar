@@ -1,11 +1,14 @@
 /*
   Script to format and generate a new .ics calendar event file.
-  Currently encompasses the following fields: summary, location (string), dtstamp, start/end date/time, UID, timezone identifier, priority,
-  TODO: geographic position, classification, version, recurring events
+  Currently encompasses the following fields: summary, location (string), dtstamp, start/end date/time, UID, timezone identifier, priority, classification, version, recurring events
+  TODO: geographic position
  */
 
-//sets the default date values
+//sets the default date values, hides advanced fields
 window.onload = function () {
+  [].forEach.call(document.getElementsByClassName('advanced'), function (el) {
+    el.style.display = 'none';
+  });
   const date = new Date();
   const dt = createDate(date);
   var dateStart = document.getElementById("dateStart");
@@ -19,6 +22,14 @@ window.onload = function () {
   console.assert((dateEnd.value >= dateStart.value), `end date: ${dateEnd.value}, start date: ${dateStart.value}`);
 }
 
+//show/hide the optional (advanced) fields
+function toggleAdvanced() {
+  [].forEach.call(document.getElementsByClassName('advanced'), function (el) {
+    el.style.display = (el.style.display === 'none') ? 'block' : 'none';
+    document.getElementById('advanced').innerText = (el.style.display === 'none') ? 'Show Advanced' : 'Hide Advanced';
+  });
+}
+
 //validation check
 function submitForm() {
   //verify there is a summary
@@ -28,6 +39,15 @@ function submitForm() {
     console.assert(false, 'No summary');
     return;
   }
+  //verify valid reccurence (number of repeats)
+  if (document.getElementById('repeat').value != 'NONE') {
+    if ((isNaN(document.getElementById('numRepeats').value) || document.getElementById('numRepeats').value < 0) && document.getElementById('numRepeats').value) {
+      alert("Invalid number of reccurrences");
+      console.assert(isNaN(document.getElementById('numRepeats').value), 'Invalid recurrence');
+      return;
+    }
+  }
+  console.log(document.getElementById('numRepeats').value);
   //verify end date/time is not before start date/time
   const start = document.getElementById("dateStart").value;
   const end = document.getElementById("dateEnd").value;
@@ -35,7 +55,7 @@ function submitForm() {
     createFile();
     return;
   }
-  else
+  else {
     if (end == start) {
       const startTime = document.getElementById("start-time").value;
       const endTime = document.getElementById("end-time").value;
@@ -54,13 +74,21 @@ function submitForm() {
       console.assert(end < start, 'Invalid alert');
       return;
     }
+  }
 }
 
 //creates a new .ics file
 function createFile() {
-  const data = `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nCALSCALE:GREGORIAN\r\n${createVevent()}END:VCALENDAR`;
-  const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
-  saveAs(file, `${document.getElementById('summary').value}.ics`);
+  version = document.getElementById('version').value;
+  const data = `BEGIN:VCALENDAR\r\nVERSION:${version}\r\nCALSCALE:GREGORIAN\r\n${createVevent()}END:VCALENDAR`;
+  if (version == '1.0') {
+    const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
+    saveAs(file, `${document.getElementById('summary').value}.vcs`);
+  }
+  else {
+    const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
+    saveAs(file, `${document.getElementById('summary').value}.ics`);
+  }
 }
 
 //creates a Vevent
@@ -83,13 +111,20 @@ function createVevent() {
 
   let event = `DTSTAMP:${dtStamp}\r\n`;
   event = event.concat(`UID:${dtStamp}-${document.getElementById('start-time').value.substring(3, 5)}@example.com\r\n`);
-  event = event.concat(`LOCATION:${link(document.getElementById('location').value)}\r\n`); //optional?
+  if (document.getElementById('location').value) {
+    event = event.concat(`LOCATION:${link(document.getElementById('location').value)}\r\n`);
+  }
   event = event.concat(`SUMMARY:${document.getElementById('summary').value}\r\n`);
   event = event.concat(`TZID:${createTZid(date)}\r\n`);
-  event = event.concat(`GEO:${GEO(document.getElementById('location').value)}\r\n`);
   event = event.concat(`DTSTART:${createDT(document.getElementById('dateStart').value, document.getElementById('start-time').value)}\r\n`);
-  event = event.concat(`DTEND:${createDT(document.getElementById('dateEnd').value, document.getElementById('end-time').value)}\r\n`);
-  // TODO: optional
+  if (document.getElementById('repeat').value != 'NONE') {
+    event = event.concat(`RRULE:FREQ=${document.getElementById('repeat').value}`);
+    if(document.getElementById('numRepeats').value) {
+      event = event.concat(`;COUNT=${document.getElementById('numRepeats').value}`);
+    }
+    event = event.concat(`\r\n`);
+  }
+    event = event.concat(`DTEND:${createDT(document.getElementById('dateEnd').value, document.getElementById('end-time').value)}\r\n`);
   event = event.concat(`PRIORITY:${document.getElementById('priority').value}\r\n`);
   event = event.concat(`CLASSIFICATION:${document.getElementById('classification').value}\r\n`);
 
@@ -252,28 +287,11 @@ function createTZid(time) {
   }
   return timezone;
 }
-function GEO(place){
-  if (place=="")
-    return "NA";//if user doesn't enter anything
-  else
-    var ltz="https://maps.googleapis.com/maps/api/geocode/json?address=";
-  var key='&key=AIzaSyBc-C712UCQ87hy0HypjDMcsxdLAA_Lj10';//the api of geocoding
-  var final=ltz+place+key;//combine the api with
-  let xmlhttp = new XMLHttpRequest();//make request for using geocoding.api
-  xmlhttp.onreadystatechange = function(){
-      let myObj = JSON.parse(xmlhttp.responseText);
-      let lat=(myObj.results[0].geometry.location.lat);//get latitude
-      let lng=(myObj.results[0].geometry.location.lng);//get longitude
-      let mycoord="GEO:"+lat+";"+lng;
-      return mycoord;//return the coordinate
-    }
-  xmlhttp.open("GET", final, true);/*put different address after"address=" */
-  xmlhttp.send();
-}
+
 function link(location){
   let url="https://www.google.com/maps/search/?api=1&query=";//link of map search
   let encodelocation = encodeURI(location);//encode the location
   let final=url+encodelocation;//combine encoded location and link
-  let result = location.link(final); //name the link as the location(hyperlink)
-  return result;//return the hyperlink
+  return final;//return the hyperlink
 }
+
