@@ -112,10 +112,11 @@ function createVevent() {
   let event = `DTSTAMP:${dtStamp}\r\n`;
   event = event.concat(`UID:${dtStamp}-${document.getElementById('start-time').value.substring(3, 5)}@example.com\r\n`);
   if (document.getElementById('location').value) {
-    event = event.concat(`LOCATION:${link(document.getElementById('location').value)}\r\n`);
+    event = event.concat(`LOCATION:${(document.getElementById('location').value)}\r\n`);
   }
   event = event.concat(`SUMMARY:${document.getElementById('summary').value}\r\n`);
   event = event.concat(`TZID:${createTZid(date)}\r\n`);
+  event = event.concat(`URL:${link(document.getElementById('location').value)}\r\n`);
   event = event.concat(`DTSTART:${createDT(document.getElementById('dateStart').value, document.getElementById('start-time').value)}\r\n`);
   if (document.getElementById('repeat').value != 'NONE') {
     event = event.concat(`RRULE:FREQ=${document.getElementById('repeat').value}`);
