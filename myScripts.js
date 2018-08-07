@@ -295,4 +295,20 @@ function link(location){
   let final=url+encodelocation;//combine encoded location and link
   return final;//return the hyperlink
 }
+function GEO(place) {
+  let ltz="https://maps.googleapis.com/maps/api/geocode/json?address=";
+  let key='&key=AIzaSyBnuyOWXHGYqnR2jOzsRsGT8Juq0gViVio';//the api of geocoding
+  let final=ltz+place+key;
+  console.log(final);
+  var example = new XMLHttpRequest();
+  example.open('GET', final);
+  example.onload = function(){
+    let myObj = JSON.parse(example.responseText);
+    let lat = (myObj.results[0].geometry.location.lat);//get latitude
+    let lng = (myObj.results[0].geometry.location.lng);//get longitude
+    let mycoord = "GEO:" + lat + ";" + lng;
+    console.log(mycoord);
+  };
+  example.send();
+}
 
